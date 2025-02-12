@@ -1,0 +1,48 @@
+# Amcom
+
+Este projeto consiste em três microserviços desenvolvidos em Java, utilizando Docker Compose para orquestração de contêineres.
+
+## Pré-requisitos
+
+- [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) ou superior
+- [Maven](https://maven.apache.org/download.cgi) (versão 3.6 ou superior)
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/) (versão 3 ou superior)
+
+## Estrutura do Projeto
+
+- `Ms1/`: Contém o a lógica para receber 3 mil requisições por segundo, evitando duplicidade e disponibilizando imediatamente o pedido para consulta.
+- `service2/`: Contém a lógica de calcular o preço total das notas.
+- `service3/`: Contém a lógica de atualizar o banco de dados com o preço total das notas.
+- `docker-compose.yml`: Arquivo de configuração para Docker Compose.
+
+## Configuração e Execução
+
+Execute o comando "docker compose up"
+Suba os 3 microserviços em sua IDE de preferência, indico Intellij
+Adicione esta duas requisições ao seu Postman:
+
+GET http://localhost:8081/order/v1/retrieve
+
+POST http://localhost:8081/order/v1/create
+{
+  "idCliente": "99999212-d4fa-9659-32c7-3d7c65e2a70a",
+  "items": [
+    {
+      "name": "Product Ab",
+      "quantity": 39,
+      "price": 19.99
+    },
+    {
+      "name": "Product B",
+      "quantity": 1,
+      "price": 49.95
+    },
+    {
+      "name": "Product C",
+      "quantity": 3,
+      "price": 14.50
+    }
+  ]
+}
+
