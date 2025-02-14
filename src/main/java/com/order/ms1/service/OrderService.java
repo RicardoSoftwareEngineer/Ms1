@@ -41,4 +41,8 @@ public class OrderService {
     public List<OrderEntity> retrieveOrders(){
         return orderRepository.findAll();
     }
+
+    public void clearCache(){
+        cacheRepository.deleteAll();
+    }
 }
